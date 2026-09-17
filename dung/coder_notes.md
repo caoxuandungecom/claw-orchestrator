@@ -27,3 +27,10 @@
   - G1_file_structure (`index.html` exists and contains `<!DOCTYPE html>`) -> PASSED
   - G2_required_sections (`currency`, `stripe`, `pricing`, `faq` present) -> PASSED
   - G3_interactive_script (`app.js` exists and parses cleanly) -> PASSED
+
+## Iteration 1
+- Evaluated Reviewer verdict from Iteration 0 (`decision: advance`).
+- Verified and aligned Integrations bar in `index.html:450-456` with directive requirement: explicitly included Xero integration alongside Stripe, PayPal, and Wise.
+- Confirmed responsive layout across viewports (375px, 768px, 1280px) and clean script execution.
+- All gates G1, G2, G3 re-verified and passing.
+
