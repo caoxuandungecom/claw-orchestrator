@@ -34,3 +34,10 @@
 - Confirmed responsive layout across viewports (375px, 768px, 1280px) and clean script execution.
 - All gates G1, G2, G3 re-verified and passing.
 
+## Iteration 2
+- Processed directive iter=2 focusing on root verification gates G1, G2, G3.
+- Verified explicit keyword matches for `<!DOCTYPE html>`, `currency`, `stripe`, `pricing`, and `faq` in `index.html`.
+- Verified `app.js` syntax (`node -c app.js`) and reactive functionality (pricing toggle -20%, FAQ accordion, mobile drawer).
+- Re-tested all evaluator checks in bash; all green.
+
+
