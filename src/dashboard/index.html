@@ -888,12 +888,53 @@
           <div data-for-tab="autoloop" style="display: contents">
             <label>
               Workspace
-              <input name="workspace" type="text" placeholder="/abs/path/to/git/workspace" />
+              <input name="workspace" type="text" placeholder="/abs/path/to/git/workspace" required />
             </label>
-            <label>
-              Planner model (optional)
-              <input name="planner_model" type="text" placeholder="claude-opus-4-7" />
-            </label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <label>
+                Planner Engine
+                <select name="planner_engine" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface);">
+                  <option value="agy" selected>Google Antigravity (agy)</option>
+                  <option value="codex">OpenAI Codex (codex)</option>
+                  <option value="claude">Claude Code (claude)</option>
+                  <option value="opencode">OpenCode (opencode)</option>
+                </select>
+              </label>
+              <label>
+                Planner Model (optional)
+                <input name="planner_model" type="text" placeholder="gemini-3.8-flash" />
+              </label>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <label>
+                Coder Engine
+                <select name="coder_engine" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface);">
+                  <option value="agy" selected>Google Antigravity (agy)</option>
+                  <option value="codex">OpenAI Codex (codex)</option>
+                  <option value="claude">Claude Code (claude)</option>
+                  <option value="opencode">OpenCode (opencode)</option>
+                </select>
+              </label>
+              <label>
+                Coder Model (optional)
+                <input name="coder_model" type="text" placeholder="gemini-3.8-flash" />
+              </label>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <label>
+                Reviewer Engine
+                <select name="reviewer_engine" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface);">
+                  <option value="agy" selected>Google Antigravity (agy)</option>
+                  <option value="codex">OpenAI Codex (codex)</option>
+                  <option value="claude">Claude Code (claude)</option>
+                  <option value="opencode">OpenCode (opencode)</option>
+                </select>
+              </label>
+              <label>
+                Reviewer Model (optional)
+                <input name="reviewer_model" type="text" placeholder="gemini-3.8-flash" />
+              </label>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" id="modalCancel">Cancel</button>
@@ -2291,8 +2332,18 @@
           if (mr) body.maxRounds = Number(mr);
         } else if (state.tab === 'autoloop') {
           body.workspace = (fd.get('workspace') || '').toString().trim();
+          const pe = (fd.get('planner_engine') || '').toString().trim();
+          if (pe) body.planner_engine = pe;
           const pm = (fd.get('planner_model') || '').toString().trim();
           if (pm) body.planner_model = pm;
+          const ce = (fd.get('coder_engine') || '').toString().trim();
+          if (ce) body.coder_engine = ce;
+          const cm = (fd.get('coder_model') || '').toString().trim();
+          if (cm) body.coder_model = cm;
+          const re = (fd.get('reviewer_engine') || '').toString().trim();
+          if (re) body.reviewer_engine = re;
+          const rm = (fd.get('reviewer_model') || '').toString().trim();
+          if (rm) body.reviewer_model = rm;
         }
         const url = state.tab === 'council' ? '/council/new' : '/autoloop/new';
         const submitBtn = $('modalSubmit');

@@ -401,7 +401,8 @@ export class PersistentClaudeSession extends EventEmitter implements ISession {
       cwd: this.options.cwd,
       env: spawnEnv,
       stdio: ['pipe', 'pipe', 'pipe'],
-      detached: true,
+      detached: process.platform !== 'win32',
+      shell: process.platform === 'win32',
     });
     // Unref so the parent process can exit independently of the child.
     this.proc.unref();

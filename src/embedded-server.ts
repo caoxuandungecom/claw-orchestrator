@@ -1031,15 +1031,30 @@ export class EmbeddedServer {
             activityLeaseMs: input.activity_lease_ms as number | undefined,
             autoloopHardTimeoutMs: input.autoloop_hard_timeout_ms as number | undefined,
           };
-          validateAutoloopTimeoutConfig(timeoutConfig);
+          let plannerEngine = input.planner_engine;
+          let plannerModel = input.planner_model;
+          if (plannerModel) {
+            const pm = plannerModel.trim().toLowerCase();
+            if (pm === 'agy' || pm.startsWith('gemini') || pm.startsWith('agy/')) {
+              plannerEngine = plannerEngine || 'agy';
+              if (pm === 'agy') plannerModel = undefined;
+            } else if (pm === 'codex' || pm.startsWith('gpt') || pm.startsWith('openai')) {
+              plannerEngine = plannerEngine || 'codex';
+              if (pm === 'codex') plannerModel = undefined;
+            }
+          }
+          const defaultEngine = plannerEngine || 'agy';
+          const coderEngine = input.coder_engine || defaultEngine;
+          const reviewerEngine = input.reviewer_engine || defaultEngine;
+
           const result = await this.manager.autoloopStart({
             runId,
             workspace: safeWorkspace,
-            plannerEngine: input.planner_engine,
-            plannerModel: input.planner_model,
-            coderEngine: input.coder_engine,
+            plannerEngine,
+            plannerModel,
+            coderEngine,
             coderModel: input.coder_model,
-            reviewerEngine: input.reviewer_engine,
+            reviewerEngine,
             reviewerModel: input.reviewer_model,
             ...timeoutConfig,
           });

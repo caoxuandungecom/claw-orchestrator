@@ -1,0 +1,18 @@
+{
+  "scalar": null,
+  "gates": [
+    {
+      "name": "typecheck",
+      "cmd": "npx tsc --noEmit",
+      "must": true
+    },
+    {
+      "name": "vitest_tests",
+      "cmd": "npx vitest run",
+      "must": true
+    }
+  ],
+  "termination": {
+    "max_iters": 5
+  }
+}

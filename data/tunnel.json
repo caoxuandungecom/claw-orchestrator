@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://chatgpt.whichapp.cc",
+  "sseUrl": "https://chatgpt.whichapp.cc/sse",
+  "openApiUrl": "https://chatgpt.whichapp.cc/openapi.json",
+  "port": 32329,
+  "type": "cloudflare-named-tunnel",
+  "updatedAt": "2026-09-17T01:34:39.028Z"
+}

@@ -279,6 +279,7 @@ program
   .option('-t, --timeout <ms>', 'Timeout', '300000')
   .option('-s, --stream', 'Collect streaming chunks and include in output')
   .action(async (name, message, opts) => {
+    process.stdout.write(`[clawo] Đang gửi yêu cầu tới '${name}'... (vui lòng đợi agent xử lý)\n`);
     const result = await api('/session/send', 'POST', {
       name,
       message,

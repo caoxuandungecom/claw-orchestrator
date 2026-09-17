@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "runId": "ua-1789574137641-d7436443",
+  "createdAt": "2026-09-16T15:55:37.650Z",
+  "updatedAt": "2026-09-16T15:55:37.650Z",
+  "meta": {
+    "name": "",
+    "title": "",
+    "description": ""
+  },
+  "inputs": [],
+  "outputs": [],
+  "pipeline": {
+    "steps": []
+  },
+  "runtime": {
+    "needsLLM": false,
+    "llmProviders": [],
+    "binaryDeps": [],
+    "estimatedRuntimeSec": 0,
+    "estimatedFileSizeMB": 0
+  },
+  "ui": {
+    "layout": "single-form",
+    "showProgress": false
+  }
+}

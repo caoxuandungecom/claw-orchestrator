@@ -83,7 +83,16 @@ export class PersistentAgySession extends BaseOneShotSession {
   private agyConversationId: string | undefined;
 
   constructor(config: SessionConfig, agyBin?: string) {
-    super(config, agyBin || process.env.AGY_BIN || 'agy', {
+    let resolvedBin = agyBin || process.env.AGY_BIN;
+    if (!resolvedBin) {
+      if (process.platform === 'win32') {
+        const localAgy = path.join(process.env.LOCALAPPDATA || '', 'agy', 'bin', 'agy.exe');
+        resolvedBin = fs.existsSync(localAgy) ? localAgy : 'agy';
+      } else {
+        resolvedBin = 'agy';
+      }
+    }
+    super(config, resolvedBin, {
       enginePrefix: 'agy',
       // 3.8 because 1.1.25 stopped serving 3.5: `--model gemini-3.5-flash`
       // returns `status: ERROR` with an empty response and nothing on stderr,
@@ -140,6 +149,7 @@ export class PersistentAgySession extends BaseOneShotSession {
     // for headless work.
     if (this.options.sandboxMode === 'read-only') {
       args.push('--mode', 'plan');
+      args.push('--dangerously-skip-permissions');
     } else if (this.options.permissionMode === 'bypassPermissions' || this.options.dangerouslySkipPermissions) {
       args.push('--dangerously-skip-permissions');
     } else if (this.options.permissionMode === 'default' || this.options.permissionMode === 'manual') {
@@ -242,10 +252,12 @@ export class PersistentAgySession extends BaseOneShotSession {
       // exited with code 1" — agy's own message names the valid values.
       let turnError: string | undefined;
 
+      const isCmdOrBat = process.platform === 'win32' && /\.(cmd|bat)$/i.test(this.engineBin);
       const proc = spawn(this.engineBin, args, {
         cwd: this.options.cwd,
         env: { ...process.env },
         stdio: ['ignore', 'pipe', 'pipe'],
+        shell: isCmdOrBat,
       });
       this.currentProc = proc;
 

@@ -15,7 +15,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { writeFileSync, unlinkSync, readFileSync, readdirSync } from 'node:fs';
+import { writeFileSync, unlinkSync, readFileSync, readdirSync, existsSync } from 'node:fs';
 import { tmpdir, homedir } from 'node:os';
 import { join } from 'node:path';
 
@@ -107,7 +107,14 @@ export class PersistentCodexSession extends BaseOneShotSession {
   private _rolloutRead = false;
 
   constructor(config: SessionConfig, codexBin?: string) {
-    super(config, codexBin || process.env.CODEX_BIN || 'codex', {
+    let bin = codexBin || process.env.CODEX_BIN;
+    if (!bin && process.platform === 'win32') {
+      const globalCodexJs = join(process.env.APPDATA || '', 'npm', 'node_modules', '@openai', 'codex', 'bin', 'codex.js');
+      if (existsSync(globalCodexJs)) {
+        bin = globalCodexJs;
+      }
+    }
+    super(config, bin || 'codex', {
       enginePrefix: 'codex',
       defaultModel: 'gpt-5.5',
       supportsCachedTokens: true,
@@ -323,10 +330,16 @@ export class PersistentCodexSession extends BaseOneShotSession {
       let turnError: string | undefined;
       let settled = false;
 
-      const proc = spawn(this.engineBin, args, {
+      const isJs = this.engineBin.endsWith('.js');
+      const spawnBin = isJs ? process.execPath : this.engineBin;
+      const spawnArgs = isJs ? [this.engineBin, ...args] : args;
+      const isCmdOrBat = process.platform === 'win32' && !isJs && /\.(cmd|bat)$/i.test(spawnBin);
+
+      const proc = spawn(spawnBin, spawnArgs, {
         cwd: this.options.cwd,
         env: { ...process.env },
         stdio: ['ignore', 'pipe', 'pipe'],
+        shell: isCmdOrBat,
       });
       this.currentProc = proc;
 
