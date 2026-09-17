@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LedgerFlow — Automated Global Accounting & Multi-Currency Platform</title>
+  <meta name="description" content="All-in-one global SaaS accounting platform for cross-border businesses, agencies, and founders. Real-time multi-currency FX reconciliation, automated EU VAT/US Sales tax compliance, and seamless Stripe/PayPal sync.">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            },
+            slate: {
+              850: '#151f32',
+              900: '#0f172a',
+              950: '#090d16',
+            }
+          },
+          boxShadow: {
+            'glow-indigo': '0 0 30px -5px rgba(99, 102, 241, 0.3)',
+            'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar and subtle gradient text utilities */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-accent {
+      background: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      transition: all 0.25s ease;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="relative z-50 bg-gradient-to-r from-brand-900/90 via-slate-900/90 to-brand-900/90 border-b border-brand-500/20 px-4 py-2 text-center text-xs sm:text-sm font-medium text-slate-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <span class="inline-flex items-center rounded-full bg-brand-500/20 px-2 py-0.5 text-xs font-semibold text-brand-300 border border-brand-500/30">New</span>
+      <span>Automated 2026 EU VAT One-Stop-Shop (OSS) & US State Nexus Tracking is now live!</span>
+      <a href="#features" class="inline-flex items-center text-brand-400 hover:text-brand-300 underline font-semibold ml-1">Learn more &rarr;</a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header id="main-header" class="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg p-1">
+          <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+              LedgerFlow
+              <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">Global</span>
+            </span>
+            <span class="text-[11px] text-slate-400 -mt-1 font-medium">Smart SaaS Accounting</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#features" class="hover:text-white transition-colors duration-150">Features</a>
+          <a href="#integrations" class="hover:text-white transition-colors duration-150">Integrations</a>
+          <a href="#currency" class="hover:text-white transition-colors duration-150">Multi-Currency</a>
+          <a href="#pricing" class="hover:text-white transition-colors duration-150">Pricing</a>
+          <a href="#faq" class="hover:text-white transition-colors duration-150">FAQ</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="hidden md:flex items-center gap-4">
+          <!-- Currency Indicator Pill -->
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700/60 text-xs font-medium text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>130+ Currencies Live</span>
+          </div>
+          <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-white px-3 py-2 transition-colors">Sign In</a>
+          <a href="#pricing" class="cta-trigger inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-600 shadow-md shadow-brand-600/30 hover:shadow-brand-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-brand-500">
+            Start Free Trial
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex md:hidden items-center gap-2">
+          <button id="mobile-menu-btn" type="button" aria-label="Open Navigation Menu" aria-expanded="false" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <svg id="hamburger-icon" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-3 pb-6 space-y-4 backdrop-blur-2xl">
+      <div class="flex flex-col space-y-3 font-medium text-slate-300 text-base">
+        <a href="#features" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-slate-800/60 hover:text-white">Features</a>
+        <a href="#integrations" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-slate-800/60 hover:text-white">Integrations</a>
+        <a href="#currency" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-slate-800/60 hover:text-white">Multi-Currency & FX</a>
+        <a href="#pricing" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-slate-800/60 hover:text-white">Pricing Plans</a>
+        <a href="#faq" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-slate-800/60 hover:text-white">FAQ</a>
+      </div>
+      <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+        <a href="#pricing" class="mobile-nav-link text-center py-2.5 font-medium text-slate-300 hover:text-white rounded-lg bg-slate-900 border border-slate-700">Sign In</a>
+        <a href="#pricing" class="cta-trigger text-center py-2.5 font-semibold text-white rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 shadow-md shadow-brand-600/30">Start 14-Day Free Trial</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+    <!-- Ambient Background Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand-600/15 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Headline & Copy -->
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        
+        <!-- Trust Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-brand-500/30 text-xs sm:text-sm font-medium text-brand-300 shadow-inner">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          Next-Gen Global Financial Engine
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-400">Zero Spreadsheet Headaches</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white">
+          Accounting Without Borders for <span class="gradient-text">Global SaaS & Agencies</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed font-normal">
+          Automate multi-currency bookkeeping across <span class="text-white font-semibold">130+ currencies</span>, instant 2-way reconciliation with <span class="text-white font-semibold">Stripe & PayPal</span>, and real-time EU VAT & US Sales Tax compliance.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
+          <a href="#pricing" class="cta-trigger w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-white rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-brand-500 hover:from-brand-500 hover:to-indigo-500 shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+            <span>Start 14-Day Free Trial</span>
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+          <a href="#demo" id="watch-demo-btn" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-base font-medium text-slate-200 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 transition-all duration-200">
+            <svg class="w-5 h-5 mr-2 text-brand-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span>Interactive Demo</span>
+          </a>
+        </div>
+
+        <!-- Trust Badges Under Hero CTA -->
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-400 font-medium">
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>No credit card required</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>SOC2 Type II & GDPR Ready</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>5-minute instant setup</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE HERO MOCKUP CARD -->
+      <div id="demo" class="mt-14 max-w-5xl mx-auto">
+        <div class="relative rounded-2xl p-1 bg-gradient-to-b from-slate-700/60 via-slate-800/30 to-slate-900/60 shadow-2xl shadow-indigo-950/50">
+          <div class="glass-card rounded-[15px] p-4 sm:p-7 border border-slate-700/50 overflow-hidden">
+            
+            <!-- Window Bar -->
+            <div class="flex flex-wrap items-center justify-between pb-5 mb-5 border-b border-slate-800 gap-3">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-3 text-xs font-mono text-slate-400 hidden sm:inline">ledgerflow.app/workspace/financials</span>
+              </div>
+              
+              <!-- Interactive Currency Selector Tabs -->
+              <div class="flex items-center gap-1.5 bg-slate-900/90 p-1 rounded-xl border border-slate-800 text-xs">
+                <span class="text-[11px] text-slate-400 px-2 font-medium hidden sm:inline">Base Currency:</span>
+                <button class="currency-tab-btn px-2.5 py-1 rounded-lg font-semibold bg-brand-600 text-white transition-all shadow-sm" data-currency="USD" data-symbol="$" data-rate="1.00" data-balance="284,950.40">USD</button>
+                <button class="currency-tab-btn px-2.5 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition-all" data-currency="EUR" data-symbol="€" data-rate="0.92" data-balance="262,154.37">EUR</button>
+                <button class="currency-tab-btn px-2.5 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition-all" data-currency="GBP" data-symbol="£" data-rate="0.79" data-balance="225,110.82">GBP</button>
+                <button class="currency-tab-btn px-2.5 py-1 rounded-lg font-semibold text-slate-400 hover:text-white transition-all" data-currency="SGD" data-symbol="S$" data-rate="1.34" data-balance="381,833.54">SGD</button>
+              </div>
+            </div>
+
+            <!-- Financial Summary Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                  <span>Consolidated Balance</span>
+                  <span class="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">+18.4% vs last mo</span>
+                </div>
+                <div class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-baseline gap-1">
+                  <span id="hero-currency-symbol">$</span>
+                  <span id="hero-balance-val">284,950.40</span>
+                </div>
+                <div class="mt-1 text-xs text-slate-400 flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                  </svg>
+                  <span>Reconciled across 4 gateways</span>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                  <span>Auto-Synced Gateways</span>
+                  <span class="px-1.5 py-0.5 rounded bg-brand-500/10 text-brand-400 font-semibold">100% Match</span>
+                </div>
+                <div class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                  3,492 <span class="text-sm font-normal text-slate-400">txns</span>
+                </div>
+                <div class="mt-1 text-xs text-slate-400">
+                  <span>Stripe, PayPal, Wise & Shopify</span>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                  <span>Global Tax Accrued</span>
+                  <span class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">EU OSS & US Nexus</span>
+                </div>
+                <div class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-baseline gap-1">
+                  <span id="hero-tax-symbol">$</span>
+                  <span id="hero-tax-val">34,180.20</span>
+                </div>
+                <div class="mt-1 text-xs text-emerald-400 flex items-center gap-1 font-medium">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  <span>Ready for 1-click filing</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Live Transaction Reconciliation Stream -->
+            <div class="bg-slate-950/60 rounded-xl border border-slate-800/90 p-4">
+              <div class="flex items-center justify-between mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span>Recent Global Transactions</span>
+                <span class="text-emerald-400 flex items-center gap-1 font-mono text-[11px] lowercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  live auto-reconcile stream
+                </span>
+              </div>
+
+              <div class="space-y-2.5">
+                
+                <!-- Txn 1: Stripe -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-slate-900/70 border border-slate-800 hover:border-brand-500/40 transition-colors gap-2">
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#635BFF]/20 flex items-center justify-center font-bold text-[#A29BFE] text-sm shrink-0">
+                      S
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-white flex items-center gap-2">
+                        Stripe USD Payout Reconciled
+                        <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">MATCHED</span>
+                      </div>
+                      <div class="text-xs text-slate-400">Gross: $4,380.00 • Stripe fee: -$130.00 • ID: #ch_3Ok8v2</div>
+                    </div>
+                  </div>
+                  <div class="text-right sm:pl-4">
+                    <div class="text-sm font-bold text-emerald-400 font-mono">+$4,250.00 USD</div>
+                    <div class="text-[11px] text-slate-400">2 mins ago • Bank of America</div>
+                  </div>
+                </div>
+
+                <!-- Txn 2: Wise EU Invoice -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-slate-900/70 border border-slate-800 hover:border-brand-500/40 transition-colors gap-2">
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-emerald-600/20 flex items-center justify-center font-bold text-emerald-400 text-sm shrink-0">
+                      W
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-white flex items-center gap-2">
+                        Client Retainer (Berlin, Germany)
+                        <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">EU VAT 19%</span>
+                      </div>
+                      <div class="text-xs text-slate-400">Wise Multi-Currency Wire • Converted to base at 1.087 FX</div>
+                    </div>
+                  </div>
+                  <div class="text-right sm:pl-4">
+                    <div class="text-sm font-bold text-white font-mono">€8,900.00 EUR</div>
+                    <div class="text-[11px] text-slate-400">14 mins ago • Auto-Invoiced</div>
+                  </div>
+                </div>
+
+                <!-- Txn 3: PayPal SaaS Subscription -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-slate-900/70 border border-slate-800 hover:border-brand-500/40 transition-colors gap-2">
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#0079C1]/20 flex items-center justify-center font-bold text-[#00AFEE] text-sm shrink-0">
+                      P
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-white flex items-center gap-2">
+                        PayPal Business Recurring Subscriptions
+                        <span class="text-[10px] font-bold px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">SYNCED</span>
+                      </div>
+                      <div class="text-xs text-slate-400">Batch of 28 transactions • Auto-categorized to SaaS Revenue</div>
+                    </div>
+                  </div>
+                  <div class="text-right sm:pl-4">
+                    <div class="text-sm font-bold text-emerald-400 font-mono">+$1,450.00 USD</div>
+                    <div class="text-[11px] text-slate-400">35 mins ago • PayPal Wallet</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS LOGO STRIP -->
+  <section id="integrations" class="py-12 border-y border-slate-800/80 bg-slate-950/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs sm:text-sm font-semibold uppercase tracking-widest text-slate-400 mb-8">
+        Seamless 1-Click Sync With Your Entire Global Financial Stack
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 items-center justify-items-center opacity-80 hover:opacity-100 transition-opacity">
+        
+        <!-- Stripe Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <svg class="w-6 h-6 text-[#635BFF]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.97 15.65.5 12.632.5 6.785.5 2.825 3.58 2.825 8.784c0 6.097 5.92 7.027 8.358 8.024 2.172.889 3.036 1.547 3.036 2.502 0 .977-.887 1.488-2.316 1.488-2.43 0-5.32-.977-7.23-2.186l-.888 5.618C5.64 25.1 8.87 25.5 11.968 25.5c6.223 0 10.37-2.923 10.37-8.385 0-6.195-5.942-7.16-8.362-7.965z"/>
+          </svg>
+          <span class="text-lg tracking-tight">Stripe</span>
+        </div>
+
+        <!-- PayPal Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <svg class="w-6 h-6 text-[#0079C1]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 6 0h7.608c3.705 0 6.326 1.838 5.86 5.877-.384 3.328-2.52 5.176-5.836 5.176h-2.17l-1.41 8.948a.64.64 0 0 1-.633.541l-2.343.795z"/>
+          </svg>
+          <span class="text-lg tracking-tight">PayPal</span>
+        </div>
+
+        <!-- Wise Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+          <span class="text-lg tracking-tight">Wise</span>
+        </div>
+
+        <!-- Shopify Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <svg class="w-6 h-6 text-[#95BF47]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.82 2.5a.67.67 0 0 0-.58-.33c-.1 0-1.7.07-1.7.07s-1.12-1.1-1.25-1.23A.67.67 0 0 0 11.8 1l-2 .54a.67.67 0 0 0-.49.65l.07 1.34-3.7 1.15a.67.67 0 0 0-.47.63l-.92 17.5a.67.67 0 0 0 .66.7l17.43-.91a.67.67 0 0 0 .63-.67l-1.27-18.7a.67.67 0 0 0-.42-.64l-3.5-1.35z"/>
+          </svg>
+          <span class="text-lg tracking-tight">Shopify</span>
+        </div>
+
+        <!-- Paddle Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <div class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-black">
+            P
+          </div>
+          <span class="text-lg tracking-tight">Paddle</span>
+        </div>
+
+        <!-- Mercury / Brex Badge -->
+        <div class="flex items-center gap-2 font-bold text-slate-300 hover:text-white transition-colors">
+          <div class="w-6 h-6 rounded-md bg-brand-500/20 text-brand-400 flex items-center justify-center text-xs font-black">
+            M
+          </div>
+          <span class="text-lg tracking-tight">Mercury</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CORE FEATURE PILLARS -->
+  <section id="features" class="py-24 relative">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <h2 class="text-xs sm:text-sm font-bold tracking-widest text-brand-400 uppercase">
+          Engineered for Global Operations
+        </h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Everything You Need to Run Borderless Finances
+        </p>
+        <p class="text-slate-400 text-base sm:text-lg">
+          No more manual currency conversions, missed tax nexus deadlines, or messy transaction spreadsheets.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Pillar 1: Multi-Currency Bookkeeping -->
+        <div id="currency" class="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">1. Multi-Currency FX Engine (130+ Currencies)</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Hold balances and receive payments in USD, EUR, GBP, JPY, CAD, AUD, and 120+ other currencies. Real-time exchange rates synced hourly with the European Central Bank and Federal Reserve with automated realized & unrealized FX gain/loss journal entries.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Automated FX gain & loss journal calculations for audit compliance</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Consolidated balance sheet in your chosen home reporting currency</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Historical rate lookups compliant with GAAP and IFRS standards</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Payment Reconciliation -->
+        <div class="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">2. 1-Click Gateway Reconciliation (Stripe & PayPal)</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Eliminate end-of-month reconciliation panic. LedgerFlow automatically ties bank payouts directly to individual Stripe customer charges, platform processing fees, disputes, chargebacks, and refund lines.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Split gross sales, gateway fees, and net payouts with zero human entry</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Auto-detects failed charges, refunds, and rolling reserve holds</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Multi-gateway consolidation (Stripe + PayPal + Wise + Paddle)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: Global Tax Compliance -->
+        <div class="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">3. Automated Global Tax & Nexus Tracking</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Stay ahead of international tax liabilities. LedgerFlow calculates EU VAT One-Stop-Shop (OSS), tracks US Economic Nexus thresholds across all 50 states, and prepares filing-ready UK/AU GST reports.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Reverse-charge validation with real-time VIES VAT number verification</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>US state-by-state economic nexus warning triggers ($100k / 200 txns)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>One-click export ready for CPA filing or local revenue authorities</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 4: Smart Invoicing & Subscriptions -->
+        <div class="glass-card glass-card-hover rounded-2xl p-8 border border-slate-800 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">4. Borderless Invoicing & Automated Dunning</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Issue beautiful, legally compliant invoices in 30+ languages. Embed instant credit card, SEPA direct debit, and local bank wire details. Automated smart email follow-ups recover overdue invoices on autopilot.
+          </p>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Embedded pay buttons for Stripe, Wise, and ACH / SEPA instant transfer</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Automated dunning cadence with smart payment retry scheduling</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>White-label client portal with complete downloadable PDF history</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF & METRICS HIGHLIGHT -->
+  <section class="py-16 bg-slate-900/40 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">$4.2B+</div>
+          <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Reconciled Annually</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-brand-400 tracking-tight">130+</div>
+          <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Supported Currencies</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight">85%</div>
+          <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Faster Month-End Close</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">10,000+</div>
+          <div class="text-xs sm:text-sm text-slate-400 mt-1 font-medium">Global SaaS & Agencies</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PRICING TABLE -->
+  <section id="pricing" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+        <h2 class="text-xs sm:text-sm font-bold tracking-widest text-brand-400 uppercase">
+          Simple, Transparent Pricing
+        </h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Invest in Automation. Scale Without Headcount.
+        </p>
+        <p class="text-slate-400 text-base sm:text-lg">
+          No hidden transaction surcharges. Cancel or upgrade anytime with 1 click.
+        </p>
+
+        <!-- Billing Toggle Switch (Monthly vs Annual -20%) -->
+        <div class="pt-6 flex items-center justify-center gap-3">
+          <span id="billing-monthly-label" class="text-sm font-semibold text-white">Monthly Billing</span>
+          
+          <button id="billing-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle Annual Billing" class="relative inline-flex h-7 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-800 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <span id="billing-toggle-thumb" class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-brand-500 shadow-md ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+          </button>
+          
+          <div class="flex items-center gap-1.5">
+            <span id="billing-annual-label" class="text-sm font-medium text-slate-400">Annual Billing</span>
+            <span id="annual-discount-badge" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 animate-pulse">
+              Save 20%
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Tier Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Starter -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-800 flex flex-col justify-between transition-all duration-200 hover:border-slate-700">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-white">Starter</h3>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">Freelancers</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6">For independent freelancers and boutique cross-border consultants.</p>
+            
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="text-4xl font-extrabold text-white pricing-price" data-monthly="29" data-annual="23">$29</span>
+              <span class="text-slate-400 text-sm font-medium pricing-period">/month</span>
+            </div>
+            <p class="text-[11px] text-slate-500 billing-subtext mb-6">Billed monthly</p>
+
+            <ul class="space-y-3 text-xs text-slate-300 pt-4 border-t border-slate-800 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Up to 5 currencies supported</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Stripe & PayPal 1-click sync</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Up to 150 invoices per month</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Standard EU VAT tax calculation</span>
+              </li>
+              <li class="flex items-center gap-2.5 text-slate-500">
+                <svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span>US State nexus tracking</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#cta" class="cta-trigger w-full py-3 px-4 rounded-xl text-center text-sm font-semibold text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all">
+            Get Started Free
+          </a>
+        </div>
+
+        <!-- Tier 2: Growth (Featured / Popular) -->
+        <div class="relative glass-card rounded-2xl p-8 border-2 border-brand-500 shadow-glow-indigo flex flex-col justify-between transition-all duration-200 bg-slate-900/90 scale-100 lg:-translate-y-2">
+          
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-600 to-emerald-500 text-white text-xs font-extrabold uppercase tracking-wider shadow-md">
+            Most Popular
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-white">Scale & Growth</h3>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30">SaaS & Agencies</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6">For scaling startups and agencies managing multiple international clients.</p>
+            
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="text-4xl font-extrabold text-white pricing-price" data-monthly="79" data-annual="63">$79</span>
+              <span class="text-slate-400 text-sm font-medium pricing-period">/month</span>
+            </div>
+            <p class="text-[11px] text-slate-500 billing-subtext mb-6">Billed monthly</p>
+
+            <ul class="space-y-3 text-xs text-slate-300 pt-4 border-t border-slate-800 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-white font-semibold">Unlimited currencies (130+ supported)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Stripe, PayPal, Wise, Shopify & Paddle</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Automated EU VAT OSS & US 50-state Nexus</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Unlimited invoices & automated dunning</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>External CPA / Accountant portal access</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#cta" class="cta-trigger w-full py-3 px-4 rounded-xl text-center text-sm font-semibold text-white bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 shadow-md shadow-brand-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
+            Start 14-Day Free Trial
+          </a>
+        </div>
+
+        <!-- Tier 3: Enterprise -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-800 flex flex-col justify-between transition-all duration-200 hover:border-slate-700">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-white">Global Enterprise</h3>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">Multinationals</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6">For multi-entity corporations requiring custom ERP integrations & dedicated audit support.</p>
+            
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="text-4xl font-extrabold text-white pricing-price" data-monthly="199" data-annual="159">$199</span>
+              <span class="text-slate-400 text-sm font-medium pricing-period">/month</span>
+            </div>
+            <p class="text-[11px] text-slate-500 billing-subtext mb-6">Billed monthly</p>
+
+            <ul class="space-y-3 text-xs text-slate-300 pt-4 border-t border-slate-800 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Everything in Scale & Growth</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Multi-entity intercompany consolidation</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Custom ERP & NetSuite/SAP live bridges</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Dedicated international tax CPA advisor</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>99.99% SLA & 24/7 priority phone support</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#cta" class="cta-trigger w-full py-3 px-4 rounded-xl text-center text-sm font-semibold text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all">
+            Contact Enterprise Sales
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Money Back Guarantee -->
+      <div class="mt-12 text-center">
+        <p class="text-xs text-slate-400 inline-flex items-center gap-2">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          30-day unconditional money-back guarantee on all plans. No lock-in contracts.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="py-20 bg-slate-950/80 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs sm:text-sm font-bold tracking-widest text-emerald-400 uppercase">
+          Proven Global Results
+        </h2>
+        <p class="text-3xl font-extrabold text-white">
+          Loved by Founders & CFOs Worldwide
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-yellow-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-sm text-slate-300 italic mb-6">
+              "We sell SaaS to 40+ countries. Before LedgerFlow, reconciling Stripe payouts against EU VAT and multiple currencies took our finance team 5 full business days every month. Now it takes 15 minutes."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+            <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-300 flex items-center justify-center font-bold text-sm">
+              MK
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Marcus Klein</div>
+              <div class="text-xs text-slate-400">Co-founder & CEO at HyperScale (Berlin)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-yellow-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-sm text-slate-300 italic mb-6">
+              "The automatic US sales tax nexus tracker alone paid for the software ten times over. It flagged that we crossed the South Dakota threshold before we incurred any state penalties."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-sm">
+              SL
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Sarah Lin</div>
+              <div class="text-xs text-slate-400">Head of Finance at CloudMatrix (Singapore)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-yellow-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-sm text-slate-300 italic mb-6">
+              "Being able to invoice clients in GBP and EUR while reconciling back into our USD accounts with exact ECB exchange rates has made our international agency audit completely painless."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+            <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-sm">
+              JT
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Julian Thorne</div>
+              <div class="text-xs text-slate-400">Managing Director at Thorne Creative (London)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION SECTION -->
+  <section id="faq" class="py-24 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16 space-y-3">
+        <h2 class="text-xs sm:text-sm font-bold tracking-widest text-brand-400 uppercase">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-3xl font-extrabold text-white tracking-tight">
+          Everything You Need to Know About LedgerFlow
+        </p>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Got questions? We have answers. Can't find what you're looking for? Reach out to our 24/7 support.
+        </p>
+      </div>
+
+      <!-- FAQ List -->
+      <div class="space-y-4" id="faq-accordion-container">
+        
+        <!-- Question 1 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">How does LedgerFlow handle foreign exchange (FX) gains and losses?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            LedgerFlow connects directly to daily reference rates from the European Central Bank (ECB) and the Federal Reserve. When an invoice is issued in one currency (e.g., EUR) and paid later at a different exchange rate, LedgerFlow automatically creates corresponding journal entries for realized and unrealized FX gains or losses, fully compliant with GAAP and IFRS rules.
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">Can LedgerFlow automatically calculate and report EU VAT and US Sales Tax?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            Yes! For European Union sales, LedgerFlow detects the customer's country, applies the appropriate destination VAT rate, validates B2B VIES VAT numbers for reverse-charge exemptions, and compiles quarterly One-Stop-Shop (OSS) filing reports. For US customers, it continuously monitors your gross sales and transaction volume against each individual state's economic nexus threshold (e.g., $100k or 200 transactions).
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">How does the 1-click Stripe and PayPal integration work?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            You simply authenticate via OAuth with read-only financial permissions. LedgerFlow continuously streams charges, refunds, fee breakdowns, and daily or weekly bank payouts. It automatically links payouts from your bank statement directly to the aggregated gross customer sales and payment processing expenses, achieving 100% automated reconciliation.
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">Is my financial data secure and compliant?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            Security is our highest priority. LedgerFlow is SOC2 Type II certified and fully compliant with EU GDPR. All sensitive financial records are encrypted using AES-256 at rest and TLS 1.3 in transit. We maintain read-only API connections to your banking institutions through Plaid and Open Banking frameworks—we never store your bank login credentials.
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">Can I invite my external accountant or CPA?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            Absolutely! You can invite your accountant, fractional CFO, or CPA with customized role-based permissions (read-only audit, financial editor, or tax export permissions) at no additional charge on the Scale & Growth or Enterprise plans.
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="faq-item glass-card rounded-xl border border-slate-800 transition-colors">
+          <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl" aria-expanded="false">
+            <span class="text-base font-semibold text-white">What happens when I toggle between monthly and annual billing?</span>
+            <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60">
+            Annual billing grants an immediate 20% discount across all tiers ($23/mo instead of $29/mo for Starter, $63/mo instead of $79/mo for Scale, and $159/mo instead of $199/mo for Enterprise). You can switch between annual and monthly billing at any time from your billing settings.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM CALL-TO-ACTION SECTION -->
+  <section id="cta" class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-900/60 via-slate-950 to-emerald-950/40 pointer-events-none -z-10"></div>
+    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-semibold border border-brand-500/30">
+        Ready for Effortless Global Accounting?
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        Join 10,000+ Fast-Growing International Companies
+      </h2>
+
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto">
+        Start your 14-day free trial today. Connect Stripe, PayPal, and your bank accounts in 5 minutes with zero technical setup.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a href="#pricing" class="cta-trigger w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 shadow-xl shadow-brand-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+          Start 14-Day Free Trial
+        </a>
+        <a href="#demo" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-medium text-slate-300 rounded-xl bg-slate-900 border border-slate-700 hover:text-white hover:border-slate-600 transition-all">
+          Explore Live Preview Card
+        </a>
+      </div>
+
+      <div class="pt-4 text-xs text-slate-400 flex flex-wrap items-center justify-center gap-6">
+        <span>✓ 14-day free trial</span>
+        <span>✓ No credit card required</span>
+        <span>✓ Instant Stripe & PayPal sync</span>
+        <span>✓ Cancel anytime in 1 click</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+        
+        <!-- Company Info & Logo -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-brand-500 to-emerald-500 flex items-center justify-center text-white font-bold">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <span class="text-xl font-bold tracking-tight text-white">LedgerFlow</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
+            The modern accounting and reconciliation platform built for borderless digital companies, cross-border SaaS, agencies, and global e-commerce.
+          </p>
+          <div class="flex items-center gap-3 pt-2 text-xs">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-emerald-400 font-mono">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              All systems normal (99.99%)
+            </span>
+          </div>
+        </div>
+
+        <!-- Product Links -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Product</h3>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><a href="#features" class="hover:text-white transition-colors">Multi-Currency FX</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Stripe Reconciliation</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Global Tax & VAT OSS</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Smart Invoicing</a></li>
+            <li><a href="#integrations" class="hover:text-white transition-colors">Integrations Directory</a></li>
+          </ul>
+        </div>
+
+        <!-- Solutions Links -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Solutions</h3>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><a href="#pricing" class="hover:text-white transition-colors">For Global SaaS</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">For Digital Agencies</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">For Cross-Border Nomads</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">For Accountants & CPAs</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">Enterprise Multi-Entity</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Compliance Links -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Compliance</h3>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><a href="#" class="hover:text-white transition-colors">SOC2 Type II Report</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">GDPR & Data Privacy</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Security Architecture</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Cookie Preferences</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 LedgerFlow Technologies Inc. All rights reserved.</p>
+        <p class="flex items-center gap-4">
+          <span>US: +1 (800) 555-FLOW</span>
+          <span>•</span>
+          <span>EU: +44 20 7946 0912</span>
+          <span>•</span>
+          <span>support@ledgerflow.app</span>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- NOTIFICATION TOAST (FOR CTA CLICKS) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900/95 border border-brand-500/50 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur-xl">
+      <div class="w-8 h-8 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <div>
+        <div id="toast-title" class="text-sm font-semibold text-white">Free Trial Started</div>
+        <div id="toast-message" class="text-xs text-slate-400">Redirecting to onboarding workspace...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION JAVASCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>
